@@ -37,8 +37,9 @@ Thumbs.db
 # TypeScript build info
 *.tsbuildinfo
 
-# Cloudflare
+# Cloudflare / OpenNext build artifacts
 .wrangler/
+.open-next/
 .dev.vars
 
 # Vercel

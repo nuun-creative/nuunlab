@@ -31,35 +31,63 @@ cp .env.example .env.local
 
 ---
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare Workers (OpenNext)
 
-### First-time setup
+This project uses [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare) to deploy Next.js as a Cloudflare Worker. It does **not** use Cloudflare Pages or `@cloudflare/next-on-pages`.
 
-1. Push the repo to GitHub.
-2. In the [Cloudflare dashboard](https://dash.cloudflare.com), go to **Workers & Pages → Create → Pages → Connect to Git**.
-3. Select the repo.
-4. Set the build configuration:
-   - **Framework preset**: Next.js
-   - **Build command**: `npm run pages:build`
-   - **Build output directory**: `.vercel/output/static`
-5. Add environment variables under **Settings → Environment Variables** (use the table above).
-6. Click **Save and Deploy**.
+### Local development
 
-Cloudflare will build and deploy on every push to `main`.
+Normal Next.js dev server — no worker involved:
+```bash
+npm run dev
+```
 
-### Manual build (local preview)
+### Build the worker locally
 
 ```bash
-npm run pages:build
-# Preview locally with wrangler:
-npx wrangler pages dev .vercel/output/static
+npm run build:worker
+# Produces .open-next/worker.js and .open-next/assets/
 ```
+
+`opennextjs-cloudflare` runs `next build` internally, then adapts the output for the Cloudflare Workers runtime. Do not run `next build` separately before this.
+
+### Preview the worker locally
+
+```bash
+npm run preview:worker
+# Runs: wrangler dev — starts the worker at http://localhost:8787
+```
+
+`NEXT_PUBLIC_*` variables must be in `.env.local` for the preview to pick them up.
+
+### Deploy to Cloudflare Workers
+
+```bash
+npm run deploy
+# Runs: wrangler deploy
+```
+
+Requires you to be authenticated: `npx wrangler login` (one-time).
+
+### Git-connected auto-deploy (recommended for staging/production)
+
+1. In the [Cloudflare dashboard](https://dash.cloudflare.com), go to **Workers & Pages → Create → Worker → Deploy from Git** (Cloudflare Workers Builds).
+2. Connect the GitHub repo.
+3. Set the build configuration:
+   - **Build command**: `npm run build:worker`
+   - **Deploy command**: `wrangler deploy`
+4. Under **Settings → Build → Environment Variables**, add:
+   - `NEXT_PUBLIC_SITE_URL` = `https://nuunlabs.pages.dev` (or your production domain)
+   - `NEXT_PUBLIC_GA_ID` = `G-EDN49957S3`
+5. Save and trigger a deployment.
+
+Cloudflare will rebuild and redeploy on every push to `main`.
 
 ### Notes
 
-- `@cloudflare/next-on-pages` adapts the Next.js build for the Cloudflare edge runtime. It is listed as a devDependency.
-- `wrangler.toml` at the project root configures the Pages project name (`nuun-lab`).
-- The Next.js App Router is fully supported. Server Components, route handlers, and middleware all run on the Cloudflare edge.
+- Build-time variables (`NEXT_PUBLIC_*`) must be set in the **build environment**, not as Cloudflare Worker runtime variables. Runtime vars are not available at `next build` time.
+- `.open-next/` is gitignored — it is a local build artifact.
+- `wrangler.toml` configures the Worker name (`nuun-lab`), entry point, compatibility flags, and static asset binding.
 
 ---
 

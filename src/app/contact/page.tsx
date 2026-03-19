@@ -63,8 +63,7 @@ export default function ContactPage() {
 
           <iframe
             src="https://api.leadconnectorhq.com/widget/booking/s8hoY8T1BRL7vcOrMB1i"
-            style={{ width: "100%", border: "none", overflow: "hidden", minHeight: 600 }}
-            scrolling="no"
+            style={{ width: "100%", border: "none", overflow: "hidden", minHeight: 900 }}
             id="s8hoY8T1BRL7vcOrMB1i_1773945206750"
             title="Schedule a conversation with NUUN Creative"
           />

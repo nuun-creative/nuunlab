@@ -1,11 +1,8 @@
-name = "nuun-creative-lab"
-compatibility_date = "2024-09-23"
+name = "nuun-lab"
+main = ".open-next/worker.js"
+compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Cloudflare Pages configuration
-# Deploy via: npx wrangler pages deploy .vercel/output/static
-# Or connect GitHub repo in Cloudflare dashboard (recommended)
-
-[vars]
-# Set NEXT_PUBLIC_SITE_URL and NEXT_PUBLIC_GA_ID in the
-# Cloudflare Pages dashboard under Settings → Environment Variables
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"

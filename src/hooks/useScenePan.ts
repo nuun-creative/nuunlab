@@ -74,7 +74,7 @@ export function useScenePan(): ScenePan {
     const currentX = panX.get();
     const viewCenterFraction = trackWidth > 0 ? (-currentX + vw / 2) / trackWidth : 0.5;
 
-    let nearest = SNAP_ZONES[0];
+    let nearest: (typeof SNAP_ZONES)[number] = SNAP_ZONES[0];
     let minDist = Infinity;
     for (const zone of SNAP_ZONES) {
       const dist = Math.abs(zone.xFraction - viewCenterFraction);
