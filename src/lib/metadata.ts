@@ -7,7 +7,7 @@ const DEFAULTS = {
   title: "NUUN Creative Lab — We make things worth finding.",
   description:
     "A digital design and development studio. We build web experiences that feel alive — specific, crafted, and made to be remembered.",
-  image: "/images/og-default.jpg",
+  image: "/images/og-default.png",
   siteName: "NUUN Creative",
 };
 

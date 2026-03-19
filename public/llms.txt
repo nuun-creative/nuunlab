@@ -1,0 +1,15 @@
+# NUUN Creative Lab
+
+> A digital design and development studio. We build web experiences that feel alive — specific, crafted, and made to be remembered.
+
+## Pages
+
+- [Home](https://nuun.dev/): Interactive lab scene — explore hotspots to learn about our work and approach.
+- [The Manifesto](https://nuun.dev/manifesto): Our beliefs about what the internet should feel like.
+- [Possibility Gallery](https://nuun.dev/concepts): A gallery of immersive website directions — what your site could feel like.
+- [Start a Project](https://nuun.dev/contact): Book a free 30-minute conversation.
+
+## Contact
+
+- Email: contact@nuun.dev
+- Phone: 801-550-0241

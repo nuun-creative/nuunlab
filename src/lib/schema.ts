@@ -19,7 +19,13 @@ export function organizationSchema() {
       email: "contact@nuun.dev",
       contactType: "customer service",
     },
-    sameAs: [],
+    sameAs: [
+      "https://www.linkedin.com/in/alec-langton-978b23143/",
+      "https://www.instagram.com/alecjlangton/",
+      "https://x.com/alecjlangton",
+      "https://substack.com/@aleclangton",
+      "https://www.siliconslopes.com/u/21606cca",
+    ],
   };
 }
 

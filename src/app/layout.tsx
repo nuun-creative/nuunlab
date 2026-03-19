@@ -24,10 +24,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "NUUN Creative",
-    images: [{ url: "/images/og-default.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/images/og-default.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
+    creator: "@alecjlangton",
+    site: "@alecjlangton",
   },
   robots: {
     index: true,
