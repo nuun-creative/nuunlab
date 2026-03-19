@@ -25,6 +25,7 @@ export function organizationSchema() {
       "https://x.com/alecjlangton",
       "https://substack.com/@aleclangton",
       "https://www.siliconslopes.com/u/21606cca",
+      "https://www.facebook.com/NUUNmarketing",
     ],
   };
 }
