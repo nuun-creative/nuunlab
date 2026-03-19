@@ -22,12 +22,16 @@ import { sceneRegions, DEBUG_REGIONS } from "@/data/sceneRegions";
 import { DEBUG_EFFECTS } from "@/data/sceneEffects";
 import type { Hotspot, Panel } from "@/types/scene";
 import { LabEvents } from "@/lib/analytics";
+import { BootScreen } from "./BootScreen";
 
 export function HeroScene() {
   const [activePanel,   setActivePanel]   = useState<Panel | null>(null);
   const [cassetteOpen,  setCassetteOpen]  = useState(false);
   const [robotOpen,     setRobotOpen]     = useState(false);
   const [hoveredId,     setHoveredId]     = useState<string | null>(null);
+  const [showBoot,      setShowBoot]      = useState(() =>
+    typeof window !== "undefined" ? !sessionStorage.getItem("nuun_visited") : true
+  );
   const audioPlayer = useAudioPlayer();
 
   // ── Scroll track (mobile pan only) ────────────────────────────────────────
@@ -198,6 +202,7 @@ export function HeroScene() {
         isOpen={robotOpen}
         onClose={() => { LabEvents.modalClose("panel-robot"); setRobotOpen(false); }}
       />
+      <BootScreen visible={showBoot} onComplete={() => setShowBoot(false)} />
     </section>
   );
 }
